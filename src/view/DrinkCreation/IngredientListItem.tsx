@@ -1,8 +1,8 @@
 import { IIngredient } from "../../model/Drink";
 
-export function IngredientListItem({name}: IIngredient) {
+export function IngredientListItem({name}: {name: string}) {
 
   return (
-    <h1>name</h1>
+    <p>{name}</p>
   )
 }
