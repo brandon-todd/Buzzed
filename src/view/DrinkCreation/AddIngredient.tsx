@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IIngredient } from "../../model/Drink";
+import { DrinkService } from "../../services/DrinkService";
 import { IngredientListItem } from "./IngredientListItem";
 import { IngredientsList } from "./IngredientsList";
 
 export function AddIngredient() {
   const [listOfIngredients, addNewIngredient] = useState<IIngredient[]>([]);
   const [ingredient, setIngredient] = useState<string>('');
+  const [allDrinks, setAllDrinks] = useState<any>('');
 
   const addIngredient = () => {
     addNewIngredient(list => [...list, { name: ingredient }]);
     console.log(listOfIngredients);
   }
+
+  useEffect(() => {
+    const getResponse = async () => {
+      return await DrinkService.getDrinks();
+    }
+
+    getResponse().then(data => setAllDrinks(data)).catch(console.error);
+  }, [])
 
   return (
     <div className="uk-card uk-card-default uk-width-1-2 uk-margin-auto uk-margin-top">
@@ -24,7 +34,8 @@ export function AddIngredient() {
         </form>
       </div>
       <div className="uk-card-footer">
-        <IngredientsList ingredients={listOfIngredients}/>
+        {/* <IngredientsList ingredients={listOfIngredients}/> */}
+        <p>{JSON.stringify(allDrinks)}</p>
       </div>
     </div>
   )
