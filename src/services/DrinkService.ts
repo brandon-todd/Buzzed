@@ -1,3 +1,4 @@
+import { Drink } from "../model/Drink";
 
 export class DrinkService {
   public static async getDrinks() {
@@ -6,6 +7,6 @@ export class DrinkService {
   }
   public static async getRandomDrink() {
     const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-    return await response.json();
+    return await response.json() as Drink;
   }
 }

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { DrinkService } from "../../services/DrinkService";
-import { AddIngredient } from "../DrinkCreation/AddIngredient";
+import { Drink } from '../../model/Drink';
 
 export function RandomDrink() {
-  const [randomDrink, setRandomDrink] = useState()
+  const [randomDrink, setRandomDrink] = useState<Drink>();
 
   useEffect(() => {
-    getRandomDrink().then(data => setRandomDrink(data)).catch(console.error);
+    getRandomDrink().then(data => { setRandomDrink(data) }).catch(console.error);
   }, [])
 
   const getRandomDrink = async () => {
@@ -16,7 +16,7 @@ export function RandomDrink() {
   return (
     <div className="RandomContainer">
       <h3>Try Me</h3>
-      <p>{JSON.stringify(randomDrink)}</p>
+      <p>{randomDrink?.drinks[0].strDrink}</p>
       <form>
         <button onClick={() => getRandomDrink().then(data => setRandomDrink(data)).catch(console.error)}>New Drink</button>
       </form>
