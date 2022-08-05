@@ -23,7 +23,9 @@ export function Router() {
         <div>
           <ul className="uk-navbar-nav">
             <li>
+              <Link to="/">
               <img className="uk-height-small" src={logo}></img>
+              </Link>
             </li>
             {
               routes.map((route) => {
