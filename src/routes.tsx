@@ -31,9 +31,9 @@ export function Router() {
               routes.map((route) => {
                 return (
                   <li className="uk-flex uk-flex-middle ">
-                    <button className="uk-button uk-button-primary">
-                    <Link style={{"color": "white"}} to={route.path}>{route.title}</Link>
-                    </button>
+                    <div className="uk-button uk-button-text">
+                    <Link style={{"color": "black", "text-decoration": "none"}} to={route.path}>{route.title}</Link>
+                    </div>
                   </li>
                 );
               })
